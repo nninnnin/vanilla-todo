@@ -1,4 +1,4 @@
-# To-do list with VanillaJS
+# To-do List built with JavaScript
 
 ![project image](images/vanilla-todo.jpeg)
 
