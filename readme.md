@@ -1,5 +1,7 @@
 # To-do list with VanillaJS
 
+![project image](images/vanilla-todo.png)
+
 ## 왜?
 
 리액트를 배우기 전, <br/>
