@@ -1,6 +1,6 @@
 # To-do list with VanillaJS
 
-![project image](images/vanilla-todo.png)
+![project image](images/vanilla-todo.jpeg)
 
 ## 왜?
 
