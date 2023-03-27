@@ -1,6 +1,6 @@
 html,
 body,
-h1 {
+#todolist_title {
   margin: 0;
   padding: 0;
 }
@@ -34,5 +34,26 @@ h1 {
   background-color: #fff;
 
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+}
+
+.todo-item-span {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+input {
+  margin: 30px auto;
+  width: 500px;
+  height: 50px;
+}
+
+#finished {
+  margin-top: 50px;
+}
+
+button {
+  width: 40px;
+  height: 30px;
+  margin: 0 10px;
 }
