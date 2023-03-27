@@ -1,0 +1,71 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.container{
+    width: 50vw;
+    height: 100vh;
+    background-color: gainsboro;
+    margin: 0 auto;
+    overflow-y: auto;
+}
+
+h1{
+    width: fit-content;
+    margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 15px;
+}
+
+.todo-list, .done-todo-list{
+    padding: 10px;
+}
+
+.todo-item{
+    padding: 5px;
+    background-color: white;
+    border: 1px solid gray;
+    margin: 5px 0px;
+}
+
+.todo-item:hover{
+    background-color: gray;
+    color: white;
+}
+
+#deleteButton{
+    float: right;
+    padding: 1px 5px;
+    margin: 0px 3px;
+    cursor: pointer;
+}
+
+#deleteButton:hover, #doneButton:hover{
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+#doneButton{
+    float: right;
+    padding: 0px 2px;
+    margin: 0px 3px;
+    cursor: pointer;
+}
+
+.todo-input{
+    padding: 5px;
+    margin: 5px 0px 5px 10px;
+    width: 250px;
+}
+
+form button{
+    padding: 5px 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.todo-div{
+    padding-bottom: 20px;
+    border-bottom: 3px solid rgb(209, 209, 209);
+}
+
