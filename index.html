@@ -10,13 +10,22 @@
   </head>
   <body>
     <div class="container">
-      <h1>오늘의 할 일</h1>
+      <h1 id="todolist_title">보미의 오늘 할 일</h1>
+      <form id="todo-form">
+        <input
+          type="text"
+          placeholder="오늘의 목표를 입력하고 엔터를 눌러주세요!"
+          required
+        />
+      </form>
+
       <div class="todo-list">
-        <div class="todo-item">할일1 <button>X</button></div>
-        <div class="todo-item">할일2 <button>X</button></div>
-        <div class="todo-item">할일3 <button>X</button></div>
-        <div class="todo-item">할일4 <button>X</button></div>
-        <div class="todo-item">할일5 <button>X</button></div>
+        <!-- 할 일이 들어갈 자리 -->
+      </div>
+
+      <h1 id="finished">끝낸 일</h1>
+      <div class="finished-list">
+        <!-- 끝낸 일이 들어갈 자리 -->
       </div>
     </div>
 
