@@ -44,6 +44,7 @@ h1 {
 
   display: flex;
   justify-content: space-between;
+  height: 56px;
   
 }
 
@@ -62,11 +63,48 @@ h1 {
   /* display: flex; */
   justify-content: space-between;
   width: 468px;
-  margin-top: 0 auto;
-  margin-bottom :0 auto;
-  height: 50px;
+  padding-top: 17px ;
+  padding-bottom :10px;
   text-align: center;
   border: 2px solid;
+}
+
+.todo-add {
+  margin-bottom: 1em;
+  padding: 0 auto;
+
+  justify-content: space-between;
+  
+  border: 2px dotted;
+
+  width: 464px;
+  height: 52px;
+
+  text-align: center;
+  font-size: 1.5em;
+  color: lightgray;
+}
+
+.todo-item-add {
+  margin-bottom: 1em;
+  padding: 0 auto;
+
+  display: flex;
+  justify-content: space-between;
+  height: 56px;
+
+  border:2px dotted; 
+  color: lightgray;
+  font-size: 1.5em;
+}
+
+.todo-item-add .content {
+  /* display: flex; */
+  justify-content: space-between;
+  width: 468px;
+  padding-top: 16px ;
+  padding-bottom :10px;
+  text-align: center;
 }
 
 
