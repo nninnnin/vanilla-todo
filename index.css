@@ -9,30 +9,86 @@ h1 {
   text-align: center;
 }
 
-.container {
-  background-color: violet;
 
-  width: 500px;
-  height: 100vh;
+.container {
+  background-color: white;
+
+  width: 600px;
+  /* height: 70vh; */
 
   margin: 0 auto;
-  padding-top: 2em;
+  padding-top: 1em;
 
   position: relative;
   top: 50%;
+}
+
+.todo {
+
 }
 
 .todo-list {
   margin-top: 2em;
   margin-left: 2em;
   margin-right: 2em;
+  border:2px solid;
+  border-radius: 1em;
+  padding: 2em;
+  /* width: 368px;
+  height: 360px; */
 }
 
 .todo-item {
   margin-bottom: 1em;
-  padding: 1em;
-  background-color: #fff;
+  padding: 0 auto;
 
   display: flex;
   justify-content: space-between;
+  
+}
+
+.todo-input { 
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  width: 500px;
+  margin-top: 0 auto;
+  margin-bottom :0 auto;
+  height: 50px;
+}
+
+.todo-readonly {
+  background-color: #fff;
+  /* display: flex; */
+  justify-content: space-between;
+  width: 468px;
+  margin-top: 0 auto;
+  margin-bottom :0 auto;
+  height: 50px;
+  text-align: center;
+  border: 2px solid;
+}
+
+
+.container .todo-button button{
+  background-color: white;
+  margin-right: 1px;
+  margin-left:2px;
+}
+
+
+
+.completed {
+  
+}
+
+
+.completed-list {
+  margin-top: 2em;
+  margin-left: 2em;
+  margin-right: 2em;
+  border:2px solid;
+  border-radius: 1em;
+  padding: 2em;
+
 }
