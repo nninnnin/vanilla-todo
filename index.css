@@ -14,7 +14,6 @@ h1 {
   background-color: white;
 
   width: 600px;
-  /* height: 70vh; */
 
   margin: 0 auto;
   padding-top: 1em;
@@ -34,8 +33,6 @@ h1 {
   border:2px solid;
   border-radius: 1em;
   padding: 2em;
-  /* width: 368px;
-  height: 360px; */
 }
 
 .todo-item {
@@ -128,5 +125,16 @@ h1 {
   border:2px solid;
   border-radius: 1em;
   padding: 2em;
+
+}
+
+
+.hidden {
+  display: none;
+}
+
+
+/**** 버튼 ****/
+button .save {
 
 }
