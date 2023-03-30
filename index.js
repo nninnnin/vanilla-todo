@@ -5,6 +5,7 @@ let controlNum;
 let controlTodo;
 /*returnId: string */
 
+
 const todoListElement = document.querySelector(".todo-list");
 
 const initTodoDivElement = document.querySelector(".initDiv")
@@ -34,11 +35,24 @@ function handleToDoInitSubmit(event){ //처음에 할 일을 입력하고 저장
     saveToDos();
 }
 
-function handleButtonSave(event){ //수정 중인 상태에서 저장버튼을 눌렀을 때
+function handleToDoSubmit(event){ //새로운(not first) 할 일을 추가하고 저장버튼을 눌렀을 때
+    event.preventDefault();
+    const mustDeleteTodoElement = event.target.parentElement.parentElement;
+    const todo = mustDeleteTodoElement.querySelector("input").value; //
+    const todoArr = [num,todo];
+    todoList.push(todoArr);
+    console.log(todoList);
+    mustDeleteTodoElement.remove();
+    paintTodo(todo);
+    paintProposeNewTodo();
+    saveToDos();
+}
+
+function handleButtonSave(event){ //수정 중인 상태에서 저장버튼을 눌렀을 때. //한번 수정한 전적이 있는 투두는 이후 수정을 또 하고 저장해도 이 상태
     event.preventDefault();
 
     const mustDeleteTodoElement = event.target.parentElement.parentElement;
-    console.log(mustDeleteTodoElement);
+    // console.log(mustDeleteTodoElement);
 
     const returnId = mustDeleteTodoElement.id;
     const afterModifyTodo = mustDeleteTodoElement.querySelector("input").value;
@@ -53,7 +67,8 @@ function handleButtonSave(event){ //수정 중인 상태에서 저장버튼을 �
         };
     }
     
-    console.log(todoList);
+    saveToDos();
+    // console.log(todoList);
     
     const div = document.createElement("div");
     div.className ="todo-item";
@@ -79,8 +94,8 @@ function handleButtonSave(event){ //수정 중인 상태에서 저장버튼을 �
     div.appendChild(buttonDelete);
     todoListElement.appendChild(div);
 
-    SendBackProposeNewTodo()
-
+    
+    SendBackProposeNewTodo();
 }
 
 
@@ -91,6 +106,7 @@ function handleButtonModify(event) //수정 버튼을 클릭했을 때
     const beforeModifyTodo = mustDeleteTodoElement.querySelector("span").innerText;
     mustDeleteTodoElement.remove();
     paintModifyTodo(beforeModifyTodo,returnId);
+    SendBackProposeNewTodo();
 }
 
 
@@ -129,10 +145,13 @@ function paintModifyTodo(beforeModifyTodo,returnId) { //todo를 수정하는 중
     todoListElement.appendChild(div);
 
     SendBackProposeNewTodo();
+
 }
 
 function PaintWriteTodo() { //todo를 새롭게 입력하는 상태
     const div =  document.createElement("div");
+    num +=1;
+    div.id = num.toString();
 
     const form = document.createElement("form");
     form.className = "todo-item";
@@ -142,30 +161,30 @@ function PaintWriteTodo() { //todo를 새롭게 입력하는 상태
     input.className = "todo-input";
     input.placeholder= "할 일을 입력하세요";
 
-    const button = document.createElement("button");
-    button.type = "submit";
-    button.className = "save";
-    button.innerText = "저장";
+    const buttonSave = document.createElement("button");
+    buttonSave.type = "submit";
+    buttonSave.className = "save";
+    buttonSave.innerText = "저장";
+    buttonSave.addEventListener("click",handleToDoSubmit);
 
     form.appendChild(input);
-    form.appendChild(button);
+    form.appendChild(buttonSave);
     div.appendChild(form);
     todoListElement.appendChild(div);
 
 }
 
-function paintTodo(todo){ //todo를 입력하고 저장한 상태
+function paintTodo(todo){ //todo를 입력하고 저장하면 나타나는 상태 //수정 전에만 나타남.
     const div = document.createElement("div");
     div.className ="todo-item";
     div.id = num.toString();
-    num +=1;
-
+    
     const span = document.createElement("span");
     span.className = "todo-readonly";
     span.innerText = todo;
 
-    controlNum = div.id;
-    controlTodo =todo;
+    // controlNum = div.id;
+    // controlTodo =todo;
 
     const buttonModify = document.createElement("button");
     buttonModify.innerText = "✏️";
@@ -205,9 +224,19 @@ function paintProposeNewTodo() { //할일 추가 상자
 
 
 function SendBackProposeNewTodo() { //할일 추가 상자가 항상 맨 아래 있게 하는 역할
-    const proposeNewTodoElement = document.querySelector(".todo-item-add");
-    if (proposeNewTodoElement !== null){
-        proposeNewTodoElement.remove()
+    const proposeNewTodoElements = document.querySelectorAll(".todo-item-add");
+    console.log(proposeNewTodoElements)
+    if (proposeNewTodoElements.length >1){
+        if (proposeNewTodoElements !== null){
+            proposeNewTodoElements.remove();
+        }
+    }
+    else {
+        for (let proposeNewTodoElement of proposeNewTodoElements) {
+            if (proposeNewTodoElement !== null){
+                proposeNewTodoElement.remove();
+            }
+        }
     }
 
     paintProposeNewTodo();
