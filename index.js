@@ -3,6 +3,7 @@ let todoList = [];
 let num =1;
 let controlNum;
 let controlTodo;
+/*returnId: string */
 
 const todoListElement = document.querySelector(".todo-list");
 
@@ -41,15 +42,12 @@ function handleButtonSave(event){ //수정 중인 상태에서 저장버튼을 �
 
     const returnId = mustDeleteTodoElement.id;
     const afterModifyTodo = mustDeleteTodoElement.querySelector("input").value;
+
     mustDeleteTodoElement.remove();
     console.log(returnId,afterModifyTodo);
 
-    
     for (let todo of todoList){
-        console.log(todo);
-        console.log(todo[0]);
-        console.log(controlNum);
-        if (todo[0] === controlNum) {
+        if (todo[0] === parseInt(returnId)) {
             console.log("꺄");
             todo[1] = afterModifyTodo;
         };
@@ -59,7 +57,7 @@ function handleButtonSave(event){ //수정 중인 상태에서 저장버튼을 �
     
     const div = document.createElement("div");
     div.className ="todo-item";
-    div.id = toString(controlNum);
+    div.id = returnId;
 
     const span = document.createElement("span");
     span.className = "todo-readonly";
