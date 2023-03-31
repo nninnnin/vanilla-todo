@@ -9,30 +9,148 @@ h1 {
   text-align: center;
 }
 
-.container {
-  background-color: violet;
 
-  width: 500px;
-  height: 100vh;
+.container {
+  background-color: white;
+
+  width: 600px;
 
   margin: 0 auto;
-  padding-top: 2em;
+  padding-top: 1em;
 
   position: relative;
   top: 50%;
+}
+
+
+/**** todo ****/
+.todo {
+
+}
+
+.todo-initDiv {
+
 }
 
 .todo-list {
   margin-top: 2em;
   margin-left: 2em;
   margin-right: 2em;
+  border:2px solid;
+  border-radius: 1em;
+  padding: 2em;
 }
 
 .todo-item {
   margin-bottom: 1em;
-  padding: 1em;
-  background-color: #fff;
+  padding: 0 auto;
 
   display: flex;
   justify-content: space-between;
+  height: 56px;
+  
+}
+
+.todo-input { 
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  width: 500px;
+  margin-top: 0 auto;
+  margin-bottom :0 auto;
+  height: 50px;
+}
+
+.todo-readonly {
+  background-color: #fff;
+  /* display: flex; */
+  justify-content: space-between;
+  width: 468px;
+  padding-top: 17px ;
+  padding-bottom :10px;
+  text-align: center;
+  border: 2px solid;
+}
+
+.todo-item-add {
+  margin-bottom: 1em;
+  padding: 0 auto;
+
+  display: flex;
+  justify-content: space-between;
+  height: 56px;
+
+  border:2px dotted; 
+  color: lightgray;
+  font-size: 1.5em;
+}
+
+.todo-item-add .content {
+  /* display: flex; */
+  justify-content: space-between;
+  width: 468px;
+  padding-top: 16px ;
+  padding-bottom :10px;
+  text-align: center;
+}
+
+.container .todo-button button{
+  background-color: white;
+  margin-right: 1px;
+  margin-left:2px;
+}
+
+
+/**** completed ****/
+.completed {
+  
+}
+
+.completed-list {
+  margin-top: 2em;
+  margin-left: 2em;
+  margin-right: 2em;
+  border:2px solid;
+  border-radius: 1em;
+  padding: 2em;
+}
+
+.completed-item  {
+  background-color: black;
+  color:white;
+  margin-bottom: 1em;
+  padding: 0 auto;
+
+  display: flex;
+  justify-content: space-between;
+  height: 56px;
+  
+}
+
+.completed-readonly {
+  background-color: black;
+  color:white;
+
+  justify-content: space-between;
+  width: 468px;
+  padding-top: 17px ;
+  padding-bottom :10px;
+  text-align: center;
+}
+
+.completed-button {
+  background-color: black;
+  color:white;
+}
+
+
+/**** 버튼 ****/
+button .save {
+
+}
+
+
+/**** etc ****/
+.hidden {
+  display: none;
 }
