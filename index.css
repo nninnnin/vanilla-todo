@@ -9,10 +9,6 @@ h1 {
   text-align: center;
 }
 
-.initDiv {
-
-}
-
 
 .container {
   background-color: white;
@@ -26,7 +22,13 @@ h1 {
   top: 50%;
 }
 
+
+/**** todo ****/
 .todo {
+
+}
+
+.todo-initDiv {
 
 }
 
@@ -70,22 +72,6 @@ h1 {
   border: 2px solid;
 }
 
-.todo-add {
-  margin-bottom: 1em;
-  padding: 0 auto;
-
-  justify-content: space-between;
-  
-  border: 2px dotted;
-
-  width: 464px;
-  height: 52px;
-
-  text-align: center;
-  font-size: 1.5em;
-  color: lightgray;
-}
-
 .todo-item-add {
   margin-bottom: 1em;
   padding: 0 auto;
@@ -108,7 +94,6 @@ h1 {
   text-align: center;
 }
 
-
 .container .todo-button button{
   background-color: white;
   margin-right: 1px;
@@ -116,11 +101,10 @@ h1 {
 }
 
 
-
+/**** completed ****/
 .completed {
   
 }
-
 
 .completed-list {
   margin-top: 2em;
@@ -129,9 +113,7 @@ h1 {
   border:2px solid;
   border-radius: 1em;
   padding: 2em;
-
 }
-
 
 .completed-item  {
   background-color: black;
@@ -155,17 +137,20 @@ h1 {
   padding-bottom :10px;
   text-align: center;
 }
+
 .completed-button {
   background-color: black;
   color:white;
-}
-
-.hidden {
-  display: none;
 }
 
 
 /**** 버튼 ****/
 button .save {
 
+}
+
+
+/**** etc ****/
+.hidden {
+  display: none;
 }

@@ -1,4 +1,3 @@
-// 여기에서 코드를 작성하세요!
 let todoList = [];
 let completedList = [];
 
@@ -9,12 +8,13 @@ let num =1;
 const todoListElement = document.querySelector(".todo-list");
 const completedListElement = document.querySelector(".completed-list");
 
-const initTodoDivElement = document.querySelector(".initDiv");
+const initTodoDivElement = document.querySelector(".todo-initDiv");
 const initTodoFormElement = document.querySelector(".todo-item");
 const initTodoInputElement = document.querySelector("input");
 const proposeNewTodoElement = document.querySelector(".todo-item-add");
 
 
+/*로컬스토리지에 저장하는 함수들*/
 const TODOS_KEY = "todos";
 function saveToDos() {   //로컬스토리지에 투두를 저장하는 함수
     localStorage.setItem(TODOS_KEY, JSON.stringify(todoList));
@@ -26,14 +26,15 @@ function saveCompleted() { //로컬스토리지에 완료한 일을 저장하는
 }
 
 
-
 /*Handle 함수들(eventListener의 함수)*/
 function handleToDoInitSubmit(event){ //처음에 할 일을 입력하고 저장했을 때
     event.preventDefault();
+
     const initTodo = initTodoInputElement.value;
     const initTodoArr = [num,initTodo];
     todoList.push(initTodoArr);
     initTodoDivElement.remove();
+
     paintTodo(initTodo);
     paintProposeNewTodo();
     saveToDos();
@@ -44,12 +45,14 @@ function handleButtonModify(event) //수정 버튼을 클릭했을 때
     const returnId = mustDeleteTodoElement.id;
     const beforeModifyTodo = mustDeleteTodoElement.querySelector("span").innerText;
     mustDeleteTodoElement.remove();
+
     paintModifyTodo(beforeModifyTodo,returnId);
     SendBackProposeNewTodo();
 }
 
 function handleButtonSave(event){ //수정 하고 submit했을 때. //한번 수정한 전적이 있는 투두는 이후 수정을 또 하고 저장해도 이 상태
     event.preventDefault();
+
     const mustDeleteTodoElement = event.target.parentElement.parentElement;
     const returnId = mustDeleteTodoElement.id;
     const afterModifyTodo = mustDeleteTodoElement.querySelector("input").value;
@@ -57,7 +60,6 @@ function handleButtonSave(event){ //수정 하고 submit했을 때. //한번 수
 
     for (let todo of todoList){
         if (todo[0] === parseInt(returnId)) {
-            console.log("꺄");
             todo[1] = afterModifyTodo;
         };
     }
@@ -97,59 +99,54 @@ function handleButtonSave(event){ //수정 하고 submit했을 때. //한번 수
 function handleNewTodoElement() { //"할 일 추가"를 눌렀을 때
     const proposeNewTodoElement = document.querySelector(".todo-item-add");
     proposeNewTodoElement.remove()
+
     PaintWriteTodo();
 }
 
 function handleToDoSubmit(event){ //새로운(not init) 할 일을 추가하고 submit했을 때
     event.preventDefault();
-    const mustDeleteTodoElement = event.target.parentElement.parentElement;
 
+    const mustDeleteTodoElement = event.target.parentElement.parentElement;
     const todo = mustDeleteTodoElement.querySelector("input").value;
+    mustDeleteTodoElement.remove();
 
     const todoArr = [num,todo];
     todoList.push(todoArr);
-    console.log(todoList);
-
-    mustDeleteTodoElement.remove();
+    saveToDos();
 
     paintTodo(todo);
     paintProposeNewTodo();
-    saveToDos();
 }
 
 function handleButtonComplete(event) { //완료(✓) 버튼을 눌렀을 때
     const mustDeleteTodoElement = event.target.parentElement;
-    // console.log(mustDeleteTodoElement);
     const returnId = mustDeleteTodoElement.id;
     const completed = mustDeleteTodoElement.querySelector("span").innerText;
+    mustDeleteTodoElement.remove();
 
     todoList = todoList.filter((element) =>element[0] !==parseInt(returnId));
-    
-    mustDeleteTodoElement.remove();
-    paintCompleted(completed,returnId);
+    saveToDos();
 
     const completedArr = [parseInt(returnId),completed];
     completedList.push(completedArr);
-    
-    saveToDos();
     saveCompleted();
+    
+    paintCompleted(completed,returnId);  
 }
 
 function handleButtonUp(event) { //completed를 다시 todo로 올리는 버튼을 눌렀을 때
     const mustDeleteTodoElement = event.target.parentElement;
-    
     const completed = mustDeleteTodoElement.querySelector("span").innerText;
     const returnId = mustDeleteTodoElement.id;
+    mustDeleteTodoElement.remove();
 
     const todoArr = [parseInt(returnId),completed];
     todoList.push(todoArr);
+    saveToDos();
 
     completedList = completedList.filter((element) =>element[0] !==parseInt(returnId));
-
-    saveToDos();
     saveCompleted();
     
-    mustDeleteTodoElement.remove();
     paintTodo(completed,returnId);
     SendBackProposeNewTodo();
 }
@@ -157,18 +154,21 @@ function handleButtonUp(event) { //completed를 다시 todo로 올리는 버튼�
 function handleButtonDeleteReadonly(event)  { //form 형식이 아닌 투두들을 지우는데 사용
     const mustDeleteTodoElement = event.target.parentElement;
     const returnId = mustDeleteTodoElement.id;
+    mustDeleteTodoElement.remove();
+
     todoList = todoList.filter((element) =>element[0] !==parseInt(returnId));
     saveToDos();
-    mustDeleteTodoElement.remove();
 }
 
 function handleButtonDeleteWhileModify(event) { //form 형식인 투두들을 지우는데 사용
     event.preventDefault();
+
     const mustDeleteTodoElement = event.target.parentElement.parentElement;
     const returnId = mustDeleteTodoElement.id;
+    mustDeleteTodoElement.remove();
+
     todoList = todoList.filter((element) =>element[0] !==parseInt(returnId));
     saveToDos();
-    mustDeleteTodoElement.remove();
 }
 
 
@@ -196,7 +196,6 @@ function PaintWriteTodo() { //todo를 새롭게 입력하는 상태 paint
     form.appendChild(buttonSave);
     div.appendChild(form);
     todoListElement.appendChild(div);
-
 }
 
 function paintTodo(todo,returnId){ //todo를 입력하고 저장하면 나타나는 상태 paint //수정 전에만 나타남.
@@ -207,7 +206,7 @@ function paintTodo(todo,returnId){ //todo를 입력하고 저장하면 나타나
     {
         div.id = num.toString();
     }
-    else{
+    else{   //completed였던 항목이 올라올 때
         div.id = returnId;
     }
     
@@ -235,7 +234,6 @@ function paintTodo(todo,returnId){ //todo를 입력하고 저장하면 나타나
 }
 
 function paintModifyTodo(beforeModifyTodo,returnId) { //todo를 수정하는 중인 상태 paint
-
     const div =  document.createElement("div");
     div.id = returnId;
     
@@ -262,12 +260,12 @@ function paintModifyTodo(beforeModifyTodo,returnId) { //todo를 수정하는 중
     todoListElement.appendChild(div);
 
     SendBackProposeNewTodo();
-
 }
 
 function paintProposeNewTodo() { //할일 추가 상자 paint
     const div1 = document.createElement("div");
     div1.className = "todo-item-add";
+    div1.addEventListener("click",handleNewTodoElement);
 
     const div2 = document.createElement("div");
     div2.className = "content";
@@ -277,10 +275,7 @@ function paintProposeNewTodo() { //할일 추가 상자 paint
 
     div2.appendChild(span);
     div1.appendChild(div2);
-    todoListElement.appendChild(div1);
-
-    div1.addEventListener("click",handleNewTodoElement);
-
+    todoListElement.appendChild(div1);  
 }
 
 function paintCompleted(completed,returnId) { //완료된 todo 상태 paint
@@ -306,7 +301,6 @@ function paintCompleted(completed,returnId) { //완료된 todo 상태 paint
 /* etc functions*/
 function SendBackProposeNewTodo() { //할일 추가 상자가 항상 맨 아래에 있게 하는 역할
     const proposeNewTodoElements = document.querySelectorAll(".todo-item-add");
-    console.log(proposeNewTodoElements)
     if (proposeNewTodoElements.length >1){
         if (proposeNewTodoElements !== null){
             proposeNewTodoElements.remove();
